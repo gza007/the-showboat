@@ -11,7 +11,8 @@ import MenuBar from './menuBar';
 
 library.add(faArrowLeft, faArrowRight);
 
-const apiKey = 'AIzaSyALQKUbE2A6kTaLwuoM_izlhXWPCyd9Ni0'; 
+const apiKey = `${process.env.REACT_APP_API_KEY}`
+//'AIzaSyALQKUbE2A6kTaLwuoM_izlhXWPCyd9Ni0'; 
 // old API `AIzaSyBdi5Q3kByqWn-UYNznAvsZMu_Bs5YGWPs`;
 const channelID = 'UCn4VbFTUFSxoQjTBHsuqkLQ';
 // old Channel ID `UCXDkshUQ8OFJjz2BKGjt-KQ`;
