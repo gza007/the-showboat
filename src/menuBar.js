@@ -22,13 +22,13 @@ handleClick( item ) {
 handleList( children ) {
     const { classes } = this.props;
     const { state } = this;
-return children.map( ( menu ) => {
+return children.map( ( menu, index ) => {
   if ( !menu.children ) {
     return (
-      <div key={ menu.name }>
+      <div key={ index }>
         <ListItem 
           button 
-          key={ menu.name }>
+          key={ index }>
           <Link 
             to={ menu.url }
             className={ classes.links }>
@@ -42,7 +42,7 @@ return children.map( ( menu ) => {
     )
   }
       return (
-        <div key={ menu.name }>
+        <div key={ index }>
           <ListItem 
             button 
             onClick={ () => this.handleClick( menu.name ) }

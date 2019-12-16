@@ -12,10 +12,7 @@ import MenuBar from './menuBar';
 library.add(faArrowLeft, faArrowRight);
 
 const apiKey = `${process.env.REACT_APP_API_KEY}`
-//'AIzaSyALQKUbE2A6kTaLwuoM_izlhXWPCyd9Ni0'; 
-// old API `AIzaSyBdi5Q3kByqWn-UYNznAvsZMu_Bs5YGWPs`;
 const channelID = 'UCn4VbFTUFSxoQjTBHsuqkLQ';
-// old Channel ID `UCXDkshUQ8OFJjz2BKGjt-KQ`;
 const playlistIDsURL = `https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=`;
 const playlistItemsURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=`
 const videoDetailsURL = `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=`
@@ -25,7 +22,8 @@ class Goals extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayMonth: "September",
+      playlistTitles: [],
+      displayMonth: "",
       playlistInfo: {},
       novemberVideoList: {},
       novemberVideoDetails: {},
@@ -41,42 +39,78 @@ class Goals extends React.Component {
     };
   }
 
-  changeMonthLeft = () => {
-    if (this.state.displayMonth = "September")  {
+changeMonthLeft = () => {
+  console.log("one", this.state.displayMonth)
+  if (this.state.displayMonth = "PL Nov 19") {
+    this.setState({
+      displayMonth: "PL Oct 19"
+    })
+  } else if (this.state.displayMonth = "PL Sep 19") {
       this.setState({
-        displayMonth: "November"
-      });
-    } else if (this.state.displayMonth = "November") {
-      this.setState({
-        displayMonth: "October"
-      });
-    } else
-      this.setState({
-        displayMonth: "September"
-      });
-  };
-
-  changeMonthRight = () => {
-    if (this.state.displayMonth = "November")  {
-      this.setState({
-        displayMonth: "September"
+        displayMonth: "PL Nov 19"
       })
-    } else if (this.state.displayMonth = "September") {
-      this.setState({
-        displayMonth: "October"
-      });
-    } else if (this.state.displayMonth = "October") {
-      this.setState({
-        displayMonth: "November"
-      });
     }
-  };
+    else {
+      this.setState({
+        displayMonth: "PL Sep 19"
+      })
+    }
+  console.log("two", this.state.displayMonth)
+  }
+
+
+changeMonthRight = () => {
+  if (this.state.displayMonth = "PL Sep 19") {
+    this.setState({
+      displayMonth: "PL Oct 19"
+    })
+  } else if (this.state.displayMonth = "PL Oct 19") {
+      this.setState({
+        displayMonth: "PL Nov 19"
+      })
+    }
+  }
+
+//   changeMonthLeft = () => {
+//     if (this.state.displayMonth = "September")  {
+//       this.setState({
+//         displayMonth: "November"
+//       });
+//     } else if (this.state.displayMonth = "November") {
+//       this.setState({
+//         displayMonth: "October"
+//       });
+//     } else if (this.state.displayMonth = "October") {
+//       this.setState({
+//         displayMonth: "September"
+//       });
+//   }
+// }
+
+  // changeMonthRight = () => {
+  //   if (this.state.displayMonth = "November")  {
+  //     this.setState({
+  //       displayMonth: "September"
+  //     })
+  //   } else if (this.state.displayMonth = "September") {
+  //     this.setState({
+  //       displayMonth: "October"
+  //     });
+  //   } else if (this.state.displayMonth = "October") {
+  //     this.setState({
+  //       displayMonth: "November"
+  //     });
+  //   }
+  // };
 
   getData = () => {
     fetch(`${playlistIDsURL}${channelID}&key=${apiKey}&maxResults=50`)
       .then((res) => res.json())
       .then(data => {
-        this.setState({ playlistInfo: data })
+        this.setState({ 
+          playlistInfo: data,
+          playlistTitles: data.items.map(x => x.snippet.title)
+         })
         fetch(`${playlistItemsURL}${data.items[0].id}&key=${apiKey}`)
       .then((res2) => res2.json())
       .then(data2 => {
@@ -133,17 +167,40 @@ class Goals extends React.Component {
         </div>
 
         )
-      } else { 
+      } 
+      
+      else { 
         let goalsToDisplay = "";
-        if (this.state.displayMonth === "September") {
-          goalsToDisplay = this.state.septemberVideoDetails.items;
-        }
-        else if (this.state.displayMonth === "October") {
+        if (this.state.displayMonth === "PL Nov 19") {
+            goalsToDisplay = this.state.novemberVideoDetails.items;
+          }
+        else if (this.state.displayMonth === "PL Oct 19") {
           goalsToDisplay = this.state.octoberVideoDetails.items;
         }
         else {
-          goalsToDisplay = this.state.novemberVideoDetails.items;
+          goalsToDisplay = this.state.septemberVideoDetails.items;
         }
+        // else if (this.state.displayMonth === "PL Aug 19") {
+        //   goalsToDisplay = this.state.augustVideoDetails.items;
+        // }
+        // else if (this.state.displayMonth === "PL Apr 19") {
+        //   goalsToDisplay = this.state.aprilVideoDetails.items;
+        // }
+        // else if (this.state.displayMonth === "PL Mar 19") {
+        //   goalsToDisplay = this.state.marVideoDetails.items;
+        // }
+        
+
+
+        // if (this.state.displayMonth === "September") {
+        //   goalsToDisplay = this.state.septemberVideoDetails.items;
+        // }
+        // else if (this.state.displayMonth === "October") {
+        //   goalsToDisplay = this.state.octoberVideoDetails.items;
+        // }
+        // else {
+        //   goalsToDisplay = this.state.novemberVideoDetails.items;
+        // }
         
       return (
         <Fragment>
@@ -151,7 +208,7 @@ class Goals extends React.Component {
           <div className="goals">
           <div className="header-wrapper">
             <FontAwesomeIcon icon="arrow-left" className="arrow-icon" onClick={this.changeMonthLeft}/>
-            <span className="month">{this.state.displayMonth} 2019</span>
+            <span className="month">{this.state.displayMonth.substring(3)}</span>
             <FontAwesomeIcon icon="arrow-right" className="arrow-icon" onClick={this.changeMonthRight}/>
           </div>
             {goalsToDisplay.sort((a, b) => (b.statistics.likeCount) - (a.statistics.likeCount)).map((goal, index) => {
