@@ -23,7 +23,7 @@ class Goals extends React.Component {
     super(props);
     this.state = {
       playlistTitles: [],
-      displayMonth: "",
+      displayMonth: "PL Nov 19",
       playlistInfo: {},
       novemberVideoList: {},
       novemberVideoDetails: {},
@@ -41,6 +41,7 @@ class Goals extends React.Component {
 
 changeMonthLeft = () => {
   console.log("one", this.state.displayMonth)
+
   if (this.state.displayMonth = "PL Nov 19") {
     this.setState({
       displayMonth: "PL Oct 19"
@@ -50,7 +51,7 @@ changeMonthLeft = () => {
         displayMonth: "PL Nov 19"
       })
     }
-    else {
+    else if (this.state.displayMonth = "PL Oct 19"){
       this.setState({
         displayMonth: "PL Sep 19"
       })
@@ -60,7 +61,7 @@ changeMonthLeft = () => {
 
 
 changeMonthRight = () => {
-  if (this.state.displayMonth = "PL Sep 19") {
+  if (this.state.displayMonth = "PL Nov 19") {
     this.setState({
       displayMonth: "PL Oct 19"
     })
@@ -70,38 +71,6 @@ changeMonthRight = () => {
       })
     }
   }
-
-//   changeMonthLeft = () => {
-//     if (this.state.displayMonth = "September")  {
-//       this.setState({
-//         displayMonth: "November"
-//       });
-//     } else if (this.state.displayMonth = "November") {
-//       this.setState({
-//         displayMonth: "October"
-//       });
-//     } else if (this.state.displayMonth = "October") {
-//       this.setState({
-//         displayMonth: "September"
-//       });
-//   }
-// }
-
-  // changeMonthRight = () => {
-  //   if (this.state.displayMonth = "November")  {
-  //     this.setState({
-  //       displayMonth: "September"
-  //     })
-  //   } else if (this.state.displayMonth = "September") {
-  //     this.setState({
-  //       displayMonth: "October"
-  //     });
-  //   } else if (this.state.displayMonth = "October") {
-  //     this.setState({
-  //       displayMonth: "November"
-  //     });
-  //   }
-  // };
 
   getData = () => {
     fetch(`${playlistIDsURL}${channelID}&key=${apiKey}&maxResults=50`)
@@ -188,18 +157,6 @@ changeMonthRight = () => {
         // }
         // else if (this.state.displayMonth === "PL Mar 19") {
         //   goalsToDisplay = this.state.marVideoDetails.items;
-        // }
-        
-
-
-        // if (this.state.displayMonth === "September") {
-        //   goalsToDisplay = this.state.septemberVideoDetails.items;
-        // }
-        // else if (this.state.displayMonth === "October") {
-        //   goalsToDisplay = this.state.octoberVideoDetails.items;
-        // }
-        // else {
-        //   goalsToDisplay = this.state.novemberVideoDetails.items;
         // }
         
       return (
