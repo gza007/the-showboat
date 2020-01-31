@@ -42,16 +42,16 @@ class Goals extends React.Component {
 changeMonthLeft = () => {
   console.log("one", this.state.displayMonth)
 
-  if (this.state.displayMonth = "PL Nov 19") {
+  if (this.state.displayMonth === "PL Nov 19") {
     this.setState({
       displayMonth: "PL Oct 19"
     })
-  } else if (this.state.displayMonth = "PL Sep 19") {
+  } else if (this.state.displayMonth === "PL Sep 19") {
       this.setState({
         displayMonth: "PL Nov 19"
       })
     }
-    else if (this.state.displayMonth = "PL Oct 19"){
+    else if (this.state.displayMonth === "PL Oct 19"){
       this.setState({
         displayMonth: "PL Sep 19"
       })
@@ -61,11 +61,11 @@ changeMonthLeft = () => {
 
 
 changeMonthRight = () => {
-  if (this.state.displayMonth = "PL Nov 19") {
+  if (this.state.displayMonth === "PL Nov 19") {
     this.setState({
       displayMonth: "PL Oct 19"
     })
-  } else if (this.state.displayMonth = "PL Oct 19") {
+  } else if (this.state.displayMonth === "PL Oct 19") {
       this.setState({
         displayMonth: "PL Nov 19"
       })
@@ -93,7 +93,7 @@ changeMonthRight = () => {
           .then((res4) => res4.json())
           .then(data4 => {
             this.setState({ octoberVideoList: data4 });
-            fetch(`${videoDetailsURL}${data4.items[0].snippet.resourceId.videoId}%2C${data4.items[1].snippet.resourceId.videoId}%2C${data4.items[2].snippet.resourceId.videoId}%2C${data4.items[3].snippet.resourceId.videoId}%2C${data4.items[4].snippet.resourceId.videoId}%2C${data4.items[5].snippet.resourceId.videoId}%2C${data4.items[6].snippet.resourceId.videoId}%2C${data4.items[7].snippet.resourceId.videoId}&key=${apiKey}`)
+            fetch(`${videoDetailsURL}${data4.items[0].snippet.resourceId.videoId}%2C${data4.items[1].snippet.resourceId.videoId}%2C${data4.items[2].snippet.resourceId.videoId}%2C${data4.items[3].snippet.resourceId.videoId}%2C${data4.items[4].snippet.resourceId.videoId}%2C${data4.items[5].snippet.resourceId.videoId}&key=${apiKey}`)
         .then((res5) => res5.json())
         .then(data5 => {
           this.setState({ octoberVideoDetails: data5})
