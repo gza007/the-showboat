@@ -23,8 +23,11 @@ class Goals extends React.Component {
     super(props);
     this.state = {
       playlistTitles: [],
-      displayMonth: "PL Nov 19",
+      displayMonth: "PL Dec 19",
       playlistInfo: {},
+      decemberVideoList: {},
+      decemberVideoDetails: {},
+      decemberVideosHere: false,
       novemberVideoList: {},
       novemberVideoDetails: {},
       novemberVideosHere: false,
@@ -40,37 +43,47 @@ class Goals extends React.Component {
   }
 
 changeMonthLeft = () => {
-  console.log("one", this.state.displayMonth)
-
-  if (this.state.displayMonth === "PL Nov 19") {
+  if (this.state.displayMonth === "PL Dec 19") {
     this.setState({
-      displayMonth: "PL Oct 19"
+      displayMonth: "PL Nov 19"
     })
-  } else if (this.state.displayMonth === "PL Sep 19") {
+  } else if (this.state.displayMonth === "PL Nov 19") {
       this.setState({
-        displayMonth: "PL Nov 19"
+        displayMonth: "PL Oct 19"
       })
     }
     else if (this.state.displayMonth === "PL Oct 19"){
       this.setState({
         displayMonth: "PL Sep 19"
       })
-    }
-  console.log("two", this.state.displayMonth)
+    } 
+    else if (this.state.displayMonth === "PL Sep 19"){
+      this.setState({
+        displayMonth: "PL Dec 19"
+      })
+    } 
   }
 
 
 changeMonthRight = () => {
-  if (this.state.displayMonth === "PL Nov 19") {
+  if (this.state.displayMonth === "PL Dec 19") {
     this.setState({
-      displayMonth: "PL Oct 19"
+      displayMonth: "PL Sep 19"
     })
+  } else if (this.state.displayMonth === "PL Nov 19") {
+    this.setState({
+      displayMonth: "PL Dec 19"
+    })  
   } else if (this.state.displayMonth === "PL Oct 19") {
       this.setState({
         displayMonth: "PL Nov 19"
       })
-    }
+  } else if (this.state.displayMonth === "PL Sep 19") {
+    this.setState({
+      displayMonth: "PL Oct 19"
+    })
   }
+}
 
   getData = () => {
     fetch(`${playlistIDsURL}${channelID}&key=${apiKey}&maxResults=50`)
@@ -80,16 +93,27 @@ changeMonthRight = () => {
           playlistInfo: data,
           playlistTitles: data.items.map(x => x.snippet.title)
          })
-        fetch(`${playlistItemsURL}${data.items[0].id}&key=${apiKey}`)
+         fetch(`${playlistItemsURL}${data.items[0].id}&key=${apiKey}`)
+         .then((december) => december.json())
+         .then(decdata => {
+           this.setState({ decemberVideoList: decdata });
+           fetch(`${videoDetailsURL}${decdata.items[0].snippet.resourceId.videoId}%2C${decdata.items[1].snippet.resourceId.videoId}%2C${decdata.items[2].snippet.resourceId.videoId}%2C${decdata.items[3].snippet.resourceId.videoId}%2C${decdata.items[4].snippet.resourceId.videoId}%2C${decdata.items[5].snippet.resourceId.videoId}&key=${apiKey}`)
+           .then((decviddata) => decviddata.json())
+           .then(decviddetails => {
+             this.setState({ decemberVideoDetails: decviddetails})
+             this.setState({ decemberVideosHere: true })  
+
+        fetch(`${playlistItemsURL}${data.items[1].id}&key=${apiKey}`)
       .then((res2) => res2.json())
       .then(data2 => {
         this.setState({ novemberVideoList: data2 });
-        fetch(`${videoDetailsURL}${data2.items[0].snippet.resourceId.videoId}%2C${data2.items[1].snippet.resourceId.videoId}%2C${data2.items[2].snippet.resourceId.videoId}%2C${data2.items[3].snippet.resourceId.videoId}%2C${data2.items[4].snippet.resourceId.videoId}%2C${data2.items[5].snippet.resourceId.videoId}%2C${data2.items[6].snippet.resourceId.videoId}%2C${data2.items[7].snippet.resourceId.videoId}&key=${apiKey}`)
+        fetch(`${videoDetailsURL}${data2.items[0].snippet.resourceId.videoId}%2C${data2.items[1].snippet.resourceId.videoId}%2C${data2.items[2].snippet.resourceId.videoId}%2C${data2.items[3].snippet.resourceId.videoId}%2C${data2.items[4].snippet.resourceId.videoId}%2C${data2.items[5].snippet.resourceId.videoId}&key=${apiKey}`)
         .then((res3) => res3.json())
         .then(data3 => {
           this.setState({ novemberVideoDetails: data3})
-          this.setState({ novemberVideosHere: true })          
-          fetch(`${playlistItemsURL}${data.items[1].id}&key=${apiKey}`)
+          this.setState({ novemberVideosHere: true })    
+
+          fetch(`${playlistItemsURL}${data.items[2].id}&key=${apiKey}`)
           .then((res4) => res4.json())
           .then(data4 => {
             this.setState({ octoberVideoList: data4 });
@@ -98,7 +122,8 @@ changeMonthRight = () => {
         .then(data5 => {
           this.setState({ octoberVideoDetails: data5})
           this.setState({ octoberVideosHere: true })
-          fetch(`${playlistItemsURL}${data.items[2].id}&key=${apiKey}`)
+
+          fetch(`${playlistItemsURL}${data.items[3].id}&key=${apiKey}`)
           .then((res6) => res6.json())
           .then(data6 => {
             this.setState({ septemberVideoList: data6 });
@@ -109,6 +134,8 @@ changeMonthRight = () => {
           this.setState({ septemberVideosHere: true })
             })
           })
+        })
+      })
         })
       })
     })
@@ -125,7 +152,7 @@ changeMonthRight = () => {
   }
 
   render() {
-      if (this.state.novemberVideosHere === false || this.state.octoberVideosHere === false || this.state.septemberVideosHere === false) {
+      if (this.state.decemberVideosHere === false || this.state.novemberVideosHere === false || this.state.octoberVideosHere === false || this.state.septemberVideosHere === false) {
         return (
         <div className= "loading-header">
           <div className="loading-wrap">
@@ -134,30 +161,23 @@ changeMonthRight = () => {
             <span className="load-text">LOADING</span>
           </div>
         </div>
-
         )
-      } 
-      
+      }
+
       else { 
         let goalsToDisplay = "";
-        if (this.state.displayMonth === "PL Nov 19") {
-            goalsToDisplay = this.state.novemberVideoDetails.items;
+        if (this.state.displayMonth === "PL Dec 19") {
+            goalsToDisplay = this.state.decemberVideoDetails.items;
           }
+        else if (this.state.displayMonth === "PL Nov 19") {
+          goalsToDisplay = this.state.novemberVideoDetails.items;
+        }
         else if (this.state.displayMonth === "PL Oct 19") {
           goalsToDisplay = this.state.octoberVideoDetails.items;
         }
         else {
           goalsToDisplay = this.state.septemberVideoDetails.items;
         }
-        // else if (this.state.displayMonth === "PL Aug 19") {
-        //   goalsToDisplay = this.state.augustVideoDetails.items;
-        // }
-        // else if (this.state.displayMonth === "PL Apr 19") {
-        //   goalsToDisplay = this.state.aprilVideoDetails.items;
-        // }
-        // else if (this.state.displayMonth === "PL Mar 19") {
-        //   goalsToDisplay = this.state.marVideoDetails.items;
-        // }
         
       return (
         <Fragment>

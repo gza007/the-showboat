@@ -16,7 +16,8 @@ const Home = () => (
         </Link>
           <h1>
             <br />
-         Only the best goals will do.<br />
+         All the goals.<br />
+         All the leagues.<br />
          Watch them all here.<br />
           </h1>
       </header>

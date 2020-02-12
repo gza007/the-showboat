@@ -22,7 +22,8 @@
 
 
 h1 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 30px;
+  font-family: 'Coda Caption', sans-serif;
   color: white;
   text-shadow: 1px 3px 1px #474747;
   padding-top: 50px;
@@ -49,6 +50,26 @@ img {
   height: 200px;
   width: 200px;
   transition: .3s;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+	transform: scale(1);
+	animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
 }
 
 .enter-site :not(img) {
@@ -80,3 +101,4 @@ img {
     transition-delay: 4s;
   }
 }
+
