@@ -7,7 +7,7 @@ import MenuBar from './menuBar';
 const imagePL = "https://www.footballticketnet.com/files/images/tournaments/Buy-Premier-League-Football-Tickets-FootballTicketNet.png";
 const imageCL = "https://i.pinimg.com/originals/4e/e8/e9/4ee8e9139110201b6e17ac878d1250fd.jpg";
 const imageEFL = "https://upload.wikimedia.org/wikipedia/en/3/37/EFL_Championship.png";
-const imageSA = "http://www.egypttoday.com/images/larg/24859.jpg";
+const imageSA = "https://www.egypttoday.com/images/larg/24859.jpg";
 const imageLL = "https://iscreativestudio.com/wp-content/uploads/2016/08/logotipos4.jpg";
 const imageBL = "https://1000logos.net/wp-content/uploads/2018/10/Bundesliga-logo.jpg";
 const imageWSL = "https://www.underconsideration.com/brandnew/archives/fa_womens_league_logo.jpg";
