@@ -8,15 +8,17 @@ const imagePL = "https://www.footballticketnet.com/files/images/tournaments/Buy-
 const NoMatchPage = () => (
       <div className="redirect-wrapper">
         <MenuBar />
-        <header className="redirect">
-        <h2>
-        Oh Dear.<br/>
-        No goals to see here! 
-        </h2>
-      <Link to="/categories/premier-league">
-        <img className="hyperlink-image" src={imagePL} alt="EPL" />
-        </Link>
-          </header>
+          <div className="redirect">
+            <h2>
+            Oops! No goals to see here!
+            {/* Go to the Premier League!<br /> */}
+            </h2>
+          </div>
+          <div className="link">
+            <Link to="/categories/premier-league">
+              <img className="hyperlink-image" src={imagePL} alt="EPL" />
+            </Link>
+          </div>
       </div>
     );
 
