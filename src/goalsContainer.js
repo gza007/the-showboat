@@ -7,8 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import MenuBar from './menuBar';
 
-
-
 library.add(faArrowLeft, faArrowRight);
 
 const apiKey = `${process.env.REACT_APP_API_KEY}`
