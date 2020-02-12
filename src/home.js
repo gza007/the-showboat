@@ -11,7 +11,7 @@ const Home = () => (
       <Link to="/categories">
         <div className="enter-site">
           <img src={soccerImage} alt="soccer-ball" />
-          <span>The Goal Hub</span>
+          <span>The Showboat</span>
         </div>
         </Link>
           <h1>
