@@ -89,7 +89,7 @@ changeMonthRight = () => {
       .then(data => {
         this.setState({ 
           playlistInfo: data,
-          playlistTitles: data.items.map(x => x.snippet.title)
+          playlistTitles: data.items.map(x => x.snippet.title)  
          })
          fetch(`${playlistItemsURL}${data.items[0].id}&key=${apiKey}`)
          .then((december) => december.json())
@@ -105,7 +105,7 @@ changeMonthRight = () => {
       .then((res2) => res2.json())
       .then(data2 => {
         this.setState({ novemberVideoList: data2 });
-        fetch(`${videoDetailsURL}${data2.items[0].snippet.resourceId.videoId}%2C${data2.items[1].snippet.resourceId.videoId}%2C${data2.items[2].snippet.resourceId.videoId}%2C${data2.items[3].snippet.resourceId.videoId}%2C${data2.items[4].snippet.resourceId.videoId}%2C${data2.items[5].snippet.resourceId.videoId}&key=${apiKey}`)
+        fetch(`${videoDetailsURL}${data2.items[0].snippet.resourceId.videoId}%2C${data2.items[1].snippet.resourceId.videoId}%2C${data2.items[2].snippet.resourceId.videoId}%2C${data2.items[3].snippet.resourceId.videoId}&key=${apiKey}`)
         .then((res3) => res3.json())
         .then(data3 => {
           this.setState({ novemberVideoDetails: data3})
@@ -125,7 +125,7 @@ changeMonthRight = () => {
           .then((res6) => res6.json())
           .then(data6 => {
             this.setState({ septemberVideoList: data6 });
-            fetch(`${videoDetailsURL}${data6.items[0].snippet.resourceId.videoId}%2C${data6.items[1].snippet.resourceId.videoId}%2C${data6.items[2].snippet.resourceId.videoId}%2C${data6.items[3].snippet.resourceId.videoId}%2C${data6.items[4].snippet.resourceId.videoId}%2C${data6.items[5].snippet.resourceId.videoId}%2C${data6.items[6].snippet.resourceId.videoId}%2C${data6.items[7].snippet.resourceId.videoId}&key=${apiKey}`)
+            fetch(`${videoDetailsURL}${data6.items[0].snippet.resourceId.videoId}%2C${data6.items[1].snippet.resourceId.videoId}%2C${data6.items[2].snippet.resourceId.videoId}%2C${data6.items[3].snippet.resourceId.videoId}&key=${apiKey}`)
         .then((res7) => res7.json())
         .then(data7 => {
           this.setState({ septemberVideoDetails: data7})
