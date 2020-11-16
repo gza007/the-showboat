@@ -20,6 +20,10 @@ const Home = () => (
          All the leagues.<br />
          Watch them all here.<br />
           </h1>
+          <br />
+          <h3>
+            By Gee Patel
+          </h3>
       </header>
       
 
