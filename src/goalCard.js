@@ -37,7 +37,7 @@ const GoalCard = (props) => (
 <span >
   <FacebookShareButton
   url={`https://www.youtube.com/watch?v=${props.goal.id}`}
-  quote='Checkout this goal I saw on The GoalHub!'
+  quote='Checkout this goal I saw on The Showboat!'
   >
   <FacebookIcon
   size={20}
@@ -47,7 +47,7 @@ const GoalCard = (props) => (
     <span>
     <TwitterShareButton
         url={`https://www.youtube.com/watch?v=${props.goal.id}`}
-        title='Checkout this goal I saw on The GoalHub!'
+        title='Checkout this goal I saw on The Showboat!'
         >
         <TwitterIcon
           size={20}
